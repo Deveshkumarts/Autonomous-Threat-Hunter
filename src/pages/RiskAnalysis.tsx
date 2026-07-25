@@ -1,16 +1,34 @@
 import React, { useEffect, useState } from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
-import { ShieldAlert, TrendingUp, Users, AlertTriangle } from "lucide-react"
+import { ShieldAlert, TrendingUp, Users, AlertTriangle, ArrowRight } from "lucide-react"
+
+interface AlertData {
+  id: number
+  employee: string
+  department: string
+  riskScore: number
+  status: string
+  time: string
+}
 
 export function RiskAnalysis() {
   const [loading, setLoading] = useState(true)
+  const [criticalAlerts, setCriticalAlerts] = useState<AlertData[]>([])
 
-  // This will be connected to a real endpoint in the future
-  // For now, it's a placeholder structure that we'll connect once backend is ready
   useEffect(() => {
-    // Simulate loading
-    const timer = setTimeout(() => setLoading(false), 500)
-    return () => clearTimeout(timer)
+    // Fetch critical alerts for the queue
+    fetch(`${import.meta.env.VITE_API_URL}/dashboard/alerts`)
+      .then(res => res.json())
+      .then((data: AlertData[]) => {
+        // Filter for high/critical risk and take top 5
+        const highRisk = data.filter(a => a.riskScore >= 60).slice(0, 5)
+        setCriticalAlerts(highRisk)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error(err)
+        setLoading(false)
+      })
   }, [])
 
   return (
@@ -101,10 +119,37 @@ export function RiskAnalysis() {
             <AlertTriangle className="w-5 h-5 text-red-400" /> Critical Review Queue (Top 5)
           </CardTitle>
         </CardHeader>
-        <CardContent className="border-t border-border/50">
-           <div className="py-8 text-center text-textMuted">
-             No critical threats currently in the queue.
-           </div>
+        <CardContent className="border-t border-border/50 pt-4">
+           {loading ? (
+             <div className="py-8 text-center text-textMuted">Loading queue...</div>
+           ) : criticalAlerts.length === 0 ? (
+             <div className="py-8 text-center text-textMuted">No critical threats currently in the queue.</div>
+           ) : (
+             <div className="space-y-3">
+               {criticalAlerts.map((alert, idx) => (
+                 <div key={idx} className="flex items-center justify-between p-4 bg-surface/50 border border-border rounded-lg hover:border-red-500/30 transition-colors">
+                   <div className="flex items-center gap-4">
+                     <div className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center">
+                       <AlertTriangle className="w-5 h-5 text-red-500" />
+                     </div>
+                     <div>
+                       <h4 className="text-sm font-bold text-text">{alert.employee}</h4>
+                       <p className="text-xs text-textMuted">{alert.department} &bull; {alert.time}</p>
+                     </div>
+                   </div>
+                   <div className="flex items-center gap-6">
+                     <div className="text-right">
+                       <span className="block text-xs text-textMuted">Risk Score</span>
+                       <span className="text-lg font-bold text-red-500">{alert.riskScore}</span>
+                     </div>
+                     <button className="p-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors flex items-center gap-2 text-sm font-medium">
+                       Review <ArrowRight className="w-4 h-4" />
+                     </button>
+                   </div>
+                 </div>
+               ))}
+             </div>
+           )}
         </CardContent>
       </Card>
     </div>
