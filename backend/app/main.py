@@ -6,7 +6,7 @@ from .routers import employees, baseline, logs, anomalies, websocket, dashboard
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Autonomous Threat Hunter API")
+app = FastAPI(title="SentinelX API")
 
 # Setup CORS
 app.add_middleware(
@@ -27,4 +27,4 @@ app.include_router(dashboard.router)
 
 @app.get("/")
 def root():
-    return {"message": "Autonomous Threat Hunter API is running."}
+    return {"message": "SentinelX API is running."}

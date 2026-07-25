@@ -1,11 +1,11 @@
-# 🛡️ Autonomous Threat Hunter
+# 🛡️ SentinelX
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![React](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-blue)
 ![FastAPI](https://img.shields.io/badge/Backend-FastAPI-green)
 ![Scikit-Learn](https://img.shields.io/badge/AI-Scikit--Learn-orange)
 
-An AI-driven cybersecurity platform designed to detect insider threats, compromised accounts, and data exfiltration attempts in real-time. Moving beyond traditional static rules, the Autonomous Threat Hunter uses machine learning to understand the "normal" behavioral baseline of every employee and reacts autonomously when critical thresholds are breached.
+An AI-driven cybersecurity platform designed to detect insider threats, compromised accounts, and data exfiltration attempts in real-time. Moving beyond traditional static rules, SentinelX uses machine learning to understand the "normal" behavioral baseline of every employee and reacts autonomously when critical thresholds are breached.
 
 ## ✨ Key Features
 

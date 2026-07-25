@@ -6,7 +6,7 @@ export function TopNav() {
     <header className="h-16 border-b border-border bg-surface flex items-center justify-between px-6">
       <div className="flex items-center gap-3">
         <Shield className="w-8 h-8 text-blue-500" />
-        <span className="font-semibold text-lg text-text">Autonomous Threat Hunter</span>
+        <span className="font-semibold text-lg text-text">SentinelX</span>
       </div>
       
       <div className="flex items-center gap-6">
