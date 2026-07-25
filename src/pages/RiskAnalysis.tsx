@@ -37,19 +37,19 @@ export function RiskAnalysis() {
               <p className="text-textMuted">Loading data...</p>
             ) : (
               <div className="w-full flex justify-around items-end h-40 px-4">
-                <div className="flex flex-col items-center gap-2 w-1/4">
+                <div className="flex flex-col items-center justify-end gap-2 w-1/4 h-full">
                   <div className="w-full bg-green-500/80 rounded-t-sm" style={{ height: '80%' }}></div>
                   <span className="text-sm text-text">Safe</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 w-1/4">
+                <div className="flex flex-col items-center justify-end gap-2 w-1/4 h-full">
                   <div className="w-full bg-yellow-500/80 rounded-t-sm" style={{ height: '40%' }}></div>
                   <span className="text-sm text-text">Medium</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 w-1/4">
+                <div className="flex flex-col items-center justify-end gap-2 w-1/4 h-full">
                   <div className="w-full bg-orange-500/80 rounded-t-sm" style={{ height: '20%' }}></div>
                   <span className="text-sm text-text">High</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 w-1/4">
+                <div className="flex flex-col items-center justify-end gap-2 w-1/4 h-full">
                   <div className="w-full bg-red-500/80 rounded-t-sm" style={{ height: '5%' }}></div>
                   <span className="text-sm text-text">Critical</span>
                 </div>
