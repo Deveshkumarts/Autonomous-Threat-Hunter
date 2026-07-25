@@ -21,7 +21,7 @@ export function LiveLogs() {
 
   useEffect(() => {
     // Fetch valid employees from backend
-    fetch("http://localhost:8000/employees")
+    fetch(`${import.meta.env.VITE_API_URL}/employees`)
       .then(res => res.json())
       .then(data => setEmployees(data))
       .catch(console.error)
@@ -41,7 +41,7 @@ export function LiveLogs() {
         setLogs(prev => [newLog, ...prev].slice(0, 100))
 
         // Analyze log with AI backend
-        fetch("http://localhost:8000/analyze-log", {
+        fetch(`${import.meta.env.VITE_API_URL}/analyze-log`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

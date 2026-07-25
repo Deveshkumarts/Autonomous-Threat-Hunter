@@ -14,7 +14,7 @@ export function ActivityPanel() {
   const [activities, setActivities] = useState<ActivityData[]>([])
 
   useEffect(() => {
-    fetch("http://localhost:8000/dashboard/activity")
+    fetch(`${import.meta.env.VITE_API_URL}/dashboard/activity`)
       .then(res => res.json())
       .then(data => setActivities(data))
       .catch(console.error)

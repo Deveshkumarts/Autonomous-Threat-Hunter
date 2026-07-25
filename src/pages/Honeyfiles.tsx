@@ -16,7 +16,7 @@ export function Honeyfiles() {
   const [simulationStatus, setSimulationStatus] = useState<{message: string, isError: boolean} | null>(null)
 
   useEffect(() => {
-    fetch("http://localhost:8000/employees/")
+    fetch(`${import.meta.env.VITE_API_URL}/employees/`)
       .then(res => res.json())
       .then((data: EmployeeData[]) => {
         setEmployees(data)
@@ -33,7 +33,7 @@ export function Honeyfiles() {
     setSimulationStatus(null)
     
     try {
-      const response = await fetch("http://localhost:8000/analyze-log", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/analyze-log`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -7,7 +7,7 @@ export function Reports() {
   const [employees, setEmployees] = useState<EmployeeData[]>([])
 
   useEffect(() => {
-    fetch("http://localhost:8000/employees/")
+    fetch(`${import.meta.env.VITE_API_URL}/employees/`)
       .then(res => res.json())
       .then((data) => setEmployees(data))
       .catch(console.error)
@@ -37,7 +37,7 @@ export function Reports() {
               Download a full CSV export of all recorded anomalies, security alerts, and autonomous responses across the entire organization.
             </p>
             <a 
-              href="http://localhost:8000/dashboard/export/csv"
+              href={`${import.meta.env.VITE_API_URL}/dashboard/export/csv`}
               download
               className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
             >
@@ -68,7 +68,7 @@ export function Reports() {
                       <p className="text-xs text-textMuted">{emp.id} - {emp.department}</p>
                     </div>
                     <a 
-                      href={`http://localhost:8000/employees/${emp.id}/report`}
+                      href={`${import.meta.env.VITE_API_URL}/employees/${emp.id}/report`}
                       download
                       className="bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 px-3 py-1.5 rounded-md text-xs font-medium transition-colors flex items-center gap-1.5"
                     >

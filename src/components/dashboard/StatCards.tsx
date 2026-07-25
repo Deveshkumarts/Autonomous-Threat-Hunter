@@ -10,7 +10,7 @@ export function StatCards() {
   })
 
   useEffect(() => {
-    fetch("http://localhost:8000/dashboard/stats")
+    fetch(`${import.meta.env.VITE_API_URL}/dashboard/stats`)
       .then(res => res.json())
       .then(data => setStats(data))
       .catch(console.error)

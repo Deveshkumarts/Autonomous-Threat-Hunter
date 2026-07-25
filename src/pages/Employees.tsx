@@ -10,7 +10,7 @@ export function Employees() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch("http://localhost:8000/employees/")
+    fetch(`${import.meta.env.VITE_API_URL}/employees/`)
       .then(res => res.json())
       .then(data => setEmployees(data))
       .catch(console.error)

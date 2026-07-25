@@ -16,7 +16,7 @@ export function AlertsTable() {
   const [alerts, setAlerts] = useState<AlertData[]>([])
 
   useEffect(() => {
-    fetch("http://localhost:8000/dashboard/alerts")
+    fetch(`${import.meta.env.VITE_API_URL}/dashboard/alerts`)
       .then(res => res.json())
       .then(data => setAlerts(data))
       .catch(console.error)

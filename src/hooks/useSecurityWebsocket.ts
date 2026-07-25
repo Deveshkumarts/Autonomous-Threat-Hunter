@@ -13,7 +13,12 @@ export function useSecurityWebsocket() {
   const [events, setEvents] = useState<SecurityResponseEvent[]>([])
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8000/ws")
+    // Convert http(s) to ws(s)
+    const wsUrl = import.meta.env.VITE_API_URL 
+      ? import.meta.env.VITE_API_URL.replace(/^http/, 'ws') + '/ws'
+      : "ws://localhost:8000/ws"
+
+    const ws = new WebSocket(wsUrl)
     
     ws.onmessage = (event) => {
       try {

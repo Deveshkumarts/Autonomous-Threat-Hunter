@@ -41,9 +41,9 @@ export function EmployeeDetails() {
   const fetchData = async () => {
     try {
       const [riskRes, timelineRes, responseRes] = await Promise.all([
-        fetch(`http://localhost:8000/employees/${id}/risk`),
-        fetch(`http://localhost:8000/employees/${id}/timeline`),
-        fetch(`http://localhost:8000/employees/${id}/responses`)
+        fetch(`${import.meta.env.VITE_API_URL}/employees/${id}/risk`),
+        fetch(`${import.meta.env.VITE_API_URL}/employees/${id}/timeline`),
+        fetch(`${import.meta.env.VITE_API_URL}/employees/${id}/responses`)
       ])
       
       const rData = await riskRes.json()
@@ -90,7 +90,7 @@ export function EmployeeDetails() {
         </div>
         
         <a 
-          href={`http://localhost:8000/employees/${id}/report`}
+          href={`${import.meta.env.VITE_API_URL}/employees/${id}/report`}
           download
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
         >
